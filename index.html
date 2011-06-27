@@ -1,0 +1,82 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Substance | Updates</title> 
+  
+  <link href="styles/reset.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="styles/styles.css" media="screen" rel="stylesheet" type="text/css" />
+  
+  <script src="javascripts/schema.js"></script>
+  
+  <!-- Templates -->
+  <script type="text/x-handlebars-template" name="document_browser">
+    <div id="documents">
+        <% documents.each(function(doc) { %>
+          <a class="load-document" href="<%= doc.get('creator')._id.split('/')[2] %>/<%= doc.get('name') %>" document="<%= doc._id %>"  user="<%= doc.get('creator')._id.split('/')[2] %>" name="<%= doc.get('name') %>">
+            <div class="document<%= "/user/"+app.document.username === doc.get('creator')._id && app.document.docname === doc.get('name') ? " active": "" %>">
+              <div class="published"><%= doc.get('published_on') ? _.date(doc.get('published_on')) : "Unpublished" %></div>
+              <div class="title"><%= doc.get('title') %></div>
+              <div class="teaser"><%= _.teaser(doc.get('lead')) %></div>
+              
+            </div>
+          </a>
+        <% }); %>
+    </div>
+  </script>
+  
+  <script type="text/x-handlebars-template" name="document">
+    
+    <h1><%= document.get('title') %></h1>
+    <p id="lead">
+      <%= document.get('lead') %>
+    </p>
+  
+    <!-- Table of contents -->
+    <div id="toc">
+    </div>
+  
+    <!-- The actual content -->
+    <div id="document_content" class="segment">
+      
+    </div>
+  </script>
+  
+  <!-- libraries --> 
+  <script src="lib/jquery-1.6.1.min.js"></script>
+  
+  <!-- Libraries -->
+  <script src="lib/underscore.js"></script>
+  <script src="lib/data.js"></script>
+  
+  <script src="lib/backbone.js"></script>
+  
+  <!-- Source -->
+  <script src="javascripts/helpers.js"></script>
+  <script src="javascripts/html_renderer.js"></script>
+  <script src="javascripts/application.js"></script>
+
+</head>
+<body> 
+  
+  <div id="container">
+    <div id="header">
+      <div class="title">Substance | Updates</div>
+      <div class="channel"></div>
+    </div>
+    
+    <div id="wrapper">
+      <div id="browser">
+        
+      </div>
+      <div id="document">
+      </div>
+    </div>
+    <br class="clear"/>
+    
+    <div id="footer">
+      Powered by <a href="http://substance.io">Substance</a>
+    </div>
+  </div>  
+</body> 
+</html>
