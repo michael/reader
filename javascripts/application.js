@@ -184,7 +184,7 @@ var ApplicationController = Backbone.Controller.extend({
 
 var app,
     controller,
-    graph = new Data.Graph(schema).connect('ajax', {url: "http://beta.substance.io/graph/"});
+    graph = new Data.Graph(schema).connect('ajax', {url: "http://substance.io/graph/"});
 
 (function() {
   $(function() {
